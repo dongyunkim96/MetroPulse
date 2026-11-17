@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Explore Washington Metro stations, train arrivals, and service advisories.">
+<title>MetroPulse — Washington Metro</title>
+<link rel="stylesheet" href="/styles.css">
+<script type="module" src="/app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="shell top-inner">
+<a class="brand" href="#home"><span class="brand-icon" aria-hidden="true">M</span><span>Metro<span>Pulse</span><small>WASHINGTON METRO</small></span></a>
+<nav aria-label="Main navigation"><a href="#home" data-view="home">Home</a><a href="#network" data-view="network">Network</a><a href="#advisories" data-view="advisories">Advisories</a><a href="#saved" data-view="saved">Saved stations</a></nav>
+<span class="mode" id="mode"><i></i> Data status</span>
+</div></header>
+<main class="shell" id="main" tabindex="-1">
+<section id="home-view" aria-labelledby="home-title">
+  <div class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow"><span></span> WASHINGTON, DC &amp; NORTHERN VIRGINIA</p>
+      <h1 id="home-title" tabindex="-1">Know your stop.<br><em>Make your train.</em></h1>
+      <p>Find your Metro station, check the next train, and see service changes before you head out.</p>
+      <div class="hero-actions">
+        <a class="primary-action" href="#network">Explore the rail map <span aria-hidden="true">&rarr;</span></a>
+        <a class="secondary-action" href="#advisories">Service advisories <span aria-hidden="true">&nearr;</span></a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg class="hero-diagram" viewBox="0 0 540 382" aria-hidden="true">
+        <path class="hero-river" d="M132 -20 C164 32 111 92 164 148 S261 215 217 255 S137 273 170 331 L224 404"/>
+        <path stroke="#c8d6e9" d="M-15 71 H80 L151 142 H297 L365 210 H555"/>
+        <path stroke="#7bb9ff" d="M-10 111 H75 L149 185 H400 L457 242 H555"/>
+        <path stroke="#ffad75" d="M-10 260 H66 L131 195 H388 L484 99 H555"/>
+        <path stroke="#fa7c8e" d="M137 -10 L203 56 H260 L321 117 V172 L417 268 H555"/>
+        <path stroke="#64d692" d="M389 -10 V78 L342 125 V202 L460 320 H555"/>
+        <path stroke="#ffda7c" d="M284 404 V289 L323 250 V160 L365 118 V57"/>
+        <g class="hero-stops"><circle cx="75" cy="111" r="6"/><circle cx="151" cy="142" r="6"/><circle cx="260" cy="56" r="6"/><circle cx="457" cy="242" r="6"/><circle cx="484" cy="99" r="6"/><circle cx="66" cy="260" r="6"/><circle cx="460" cy="320" r="6"/><circle cx="284" cy="289" r="6"/><circle cx="321" cy="185" r="11"/></g>
+      </svg>
+      <div class="hero-diagram-label"><span aria-hidden="true">+</span> METRORAIL</div>
+      <a class="hero-station" href="#network/A01">
+        <span class="hero-station-icon" aria-hidden="true">&#9678;</span>
+        <span><small>EXPLORE A STATION</small><strong>Metro Center</strong><span class="hero-station-lines">Red &middot; Blue &middot; Orange &middot; Silver</span></span>
+        <span class="hero-station-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </div>
+  <div class="home-section">
+    <div class="home-section-head"><div><h2>Before you leave</h2><p>Check the information that matters for your trip.</p></div></div>
+    <div class="home-features">
+      <a class="home-feature" href="#network"><span class="feature-icon" aria-hidden="true">&#9678;</span><div><h3>Find your station</h3><p>Explore Metro lines and see upcoming trains by destination.</p></div><span class="feature-arrow" aria-hidden="true">&rarr;</span></a>
+      <a class="home-feature" href="#advisories"><span class="feature-icon" aria-hidden="true">&#9888;</span><div><h3>Check your route</h3><p>Review rail disruptions and elevator or escalator outages.</p></div><span class="feature-arrow" aria-hidden="true">&rarr;</span></a>
+      <a class="home-feature" href="#saved"><span class="feature-icon" aria-hidden="true">&#9734;</span><div><h3>Save your regular stops</h3><p>Keep the stations you use most within easy reach.</p></div><span class="feature-arrow" aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+  <div class="home-section quick-section">
+    <div class="home-section-head"><div><h2>Start with a station</h2><p>Open a downtown hub, a Northern Virginia terminal, or an airport stop.</p></div><a class="text-action" href="#network">Browse the network &rarr;</a></div>
+    <div class="quick-stations">
+      <a href="#network/A01"><span class="quick-line" style="--line-color:#fa6474"></span><span><strong>Metro Center</strong><small>Downtown Washington, DC</small></span><span aria-hidden="true">&rarr;</span></a>
+      <a href="#network/K08"><span class="quick-line" style="--line-color:#ffa557"></span><span><strong>Vienna</strong><small>Orange Line &middot; Northern Virginia</small></span><span aria-hidden="true">&rarr;</span></a>
+      <a href="#network/N10"><span class="quick-line" style="--line-color:#aab8ce"></span><span><strong>Dulles Airport</strong><small>Silver Line &middot; Northern Virginia</small></span><span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+<section class="intro" id="dashboard-intro" hidden><div><p class="eyebrow"><span></span> WASHINGTON, DC TRANSIT</p><h1 id="title" tabindex="-1">Network overview</h1><p id="subtitle">Explore the rail network, check arrivals, and track service changes.</p></div><button type="button" class="control refresh" id="refresh">↻ <span>Refresh data</span></button></section>
+<div class="notice" id="notice" role="status" hidden></div>
+<section class="stats" aria-label="Network summary" id="stats" hidden></section>
+<section class="workspace" id="network-view" hidden>
+<section class="panel network" aria-labelledby="network-title">
+<div class="panel-head"><div><h2 id="network-title">Rail network</h2><p>Choose a station to see its arrivals.</p></div><span class="tag" id="map-label">Schematic</span></div>
+<div class="map" id="map"><div class="map-note" id="map-note">WASHINGTON METROPOLITAN AREA</div><svg viewBox="0 0 680 390" id="diagram" role="group" aria-label="Interactive Metro rail map"></svg></div>
+<div class="legend" id="legend" aria-label="Filter stations by rail line"></div>
+</section>
+<section class="panel station" aria-labelledby="station-browser">
+<div class="panel-head"><div><h2 id="station-browser">Station explorer</h2><p>Find a stop by station name.</p></div></div>
+<div class="station-content">
+<label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search stations" aria-label="Search stations" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="results" autocomplete="off"></label>
+<div id="results" class="results" role="listbox" aria-label="Matching stations" hidden></div>
+<div id="station"></div>
+</div>
+</section>
+</section>
+<section id="alternate" class="panel alternate" hidden></section>
+</main>
+<footer class="shell footer">
+  <div><strong>MetroPulse</strong><span>Independent Washington Metro dashboard</span></div>
+  <nav aria-label="Footer"><a href="#network">Rail map</a><a href="#advisories">Service advisories</a><a href="https://developer.wmata.com/" rel="noreferrer">WMATA data &nearr;</a></nav>
+</footer>
+</body></html>

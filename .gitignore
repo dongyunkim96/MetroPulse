@@ -1,0 +1,7 @@
+dist/
+.env
+.env.local
+.vercel/
+.openai/
+.env.*
+!.env.example
